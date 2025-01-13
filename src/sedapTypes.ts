@@ -81,21 +81,7 @@ export type MapUpdateEvent = (BaseProtocol & {
   body?: unknown[] | boolean | number | null | {} | string;
 }) & {
   event: "mapUpdate";
-  body: {
-    /**
-     * An object of map nodes to update, where a key is the node's ID, or null to specify node deleting the node at that ID.
-     */
-    nodes?: {
-      [k: string]: MapNode | null;
-    };
-    roots?: {
-      [k: string]: string;
-    };
-    currentSteps?: string[];
-    ext?: {
-      [k: string]: unknown;
-    };
-  };
+  body: MapUpdateEventBody;
 };
 /**
  * This interface was referenced by `SEDAP`'s JSON-Schema
@@ -210,6 +196,25 @@ export interface MapNode {
   submaps?: string[];
   next: MapNodeNext;
   options: MapNodeOptions;
+}
+/**
+ * This interface was referenced by `SEDAP`'s JSON-Schema
+ * via the `definition` "MapUpdateEventBody".
+ */
+export interface MapUpdateEventBody {
+  /**
+   * An object of map nodes to update, where a key is the node's ID, or null to specify node deleting the node at that ID.
+   */
+  nodes?: {
+    [k: string]: MapNode | null;
+  };
+  roots?: {
+    [k: string]: string;
+  };
+  currentSteps?: string[];
+  ext?: {
+    [k: string]: unknown;
+  };
 }
 /**
  * Base class of requests, responses, and events.
