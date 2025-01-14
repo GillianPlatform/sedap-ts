@@ -212,6 +212,10 @@ export interface MapUpdateEventBody {
     [k: string]: string;
   };
   currentSteps?: string[];
+  /**
+   * If true, the map should be reset to its initial state; this event contains the full map and previous information can be discarded.
+   */
+  reset?: boolean;
   ext?: {
     [k: string]: unknown;
   };

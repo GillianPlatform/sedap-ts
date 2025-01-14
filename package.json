@@ -4,7 +4,9 @@
   "description": "SEDAP types for TypeScript",
   "types": "./src/index.d.ts",
   "scripts": {
-    "schema": "json2ts ./schema/sedap.schema.json --unreachableDefinitions --additionalProperties false --cwd ./schema --output ./src/sedapTypes.ts"
+    "update-schema": "node scripts/updateSchema.js",
+    "gen-types": "json2ts ./schema/sedap.schema.json --unreachableDefinitions --additionalProperties false --cwd ./schema --output ./src/sedapTypes.ts",
+    "update": "npm run update-schema && npm run gen-types"
   },
   "keywords": [],
   "author": "",
