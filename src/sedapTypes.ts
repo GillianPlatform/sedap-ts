@@ -181,6 +181,57 @@ export type JumpResponse = (BaseProtocol & {
    */
   body?: unknown[] | boolean | number | null | {} | string;
 }) & {};
+/**
+ * This interface was referenced by `SEDAP`'s JSON-Schema
+ * via the `definition` "GetFullMapRequest".
+ */
+export type GetFullMapRequest = (BaseProtocol & {
+  type: "request";
+  /**
+   * The command to execute.
+   */
+  command: string;
+  /**
+   * Object containing arguments for the command.
+   */
+  arguments?: unknown[] | boolean | number | null | {} | string;
+}) & {
+  command: "jump";
+  arguments: GetFullMapArguments;
+};
+/**
+ * This interface was referenced by `SEDAP`'s JSON-Schema
+ * via the `definition` "GetFullMapResponse".
+ */
+export type GetFullMapResponse = (BaseProtocol & {
+  type: "response";
+  /**
+   * Sequence number of the corresponding request.
+   */
+  request_seq: number;
+  /**
+   * Outcome of the request.
+   * If true, the request was successful and the `body` attribute may contain the result of the request.
+   * If the value is false, the attribute `message` contains the error in short form and the `body` may contain additional information (see `ErrorResponse.body.error`).
+   */
+  success: boolean;
+  /**
+   * The command requested.
+   */
+  command: string;
+  /**
+   * Contains the raw error in short form if `success` is false.
+   * This raw error might be interpreted by the client and is not shown in the UI.
+   * Some predefined values exist.
+   */
+  message?: string;
+  /**
+   * Contains request result if success is true and error details if success is false.
+   */
+  body?: unknown[] | boolean | number | null | {} | string;
+}) & {
+  body?: MapUpdateEventBody;
+};
 
 /**
  * An extension of the Debug Adapter Protocol for debugging symbolic execution.
@@ -262,3 +313,10 @@ export interface JumpArguments {
    */
   stepId: string;
 }
+/**
+ * The 'getFullMap' request takes no arguments.
+ *
+ * This interface was referenced by `SEDAP`'s JSON-Schema
+ * via the `definition` "GetFullMapArguments".
+ */
+export interface GetFullMapArguments {}
